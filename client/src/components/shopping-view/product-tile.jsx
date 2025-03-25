@@ -1,13 +1,17 @@
 import { Card, CardContent, CardFooter } from "../ui/card";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import { brandOptionsMap, categoryOptionsMap } from "@/config";
 import { Badge } from "../ui/badge";
+import { useSelector } from "react-redux";
+import { toast } from "../ui/use-toast";
 
 function ShoppingProductTile({
   product,
   handleGetProductDetails,
   handleAddtoCart,
 }) {
+  const { user } = useSelector((state) => state.auth);
+
   return (
     <Card className="w-full max-w-sm mx-auto">
       <div onClick={() => handleGetProductDetails(product?._id)}>
@@ -47,11 +51,11 @@ function ShoppingProductTile({
                 product?.salePrice > 0 ? "line-through" : ""
               } text-lg font-semibold text-primary`}
             >
-              ${product?.price}
+              Rs{product?.price}
             </span>
             {product?.salePrice > 0 ? (
               <span className="text-lg font-semibold text-primary">
-                ${product?.salePrice}
+                Rs{product?.salePrice}
               </span>
             ) : null}
           </div>
@@ -63,12 +67,23 @@ function ShoppingProductTile({
             Out Of Stock
           </Button>
         ) : (
-          <Button
-            onClick={() => handleAddtoCart(product?._id, product?.totalStock)}
-            className="w-full"
-          >
-            Add to cart
-          </Button>
+          <>
+            {user?.id ? (
+              <Button
+                onClick={() =>
+                  handleAddtoCart(product?._id, product?.totalStock)
+                }
+                className="w-full"
+              >
+                Add to cart
+              </Button>
+            ) : (
+              <Button onClick={()=>toast({
+                title: "Please Login",
+                variant: "destructive",
+              })}>Add to cart</Button>
+            )}
+          </>
         )}
       </CardFooter>
     </Card>

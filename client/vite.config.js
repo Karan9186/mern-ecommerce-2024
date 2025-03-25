@@ -10,4 +10,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    open: "/shop/home", // Automatically opens this route in the browser
+  },
 });

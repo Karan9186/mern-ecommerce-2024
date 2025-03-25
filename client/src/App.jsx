@@ -42,12 +42,12 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={
-            <CheckAuth
-              isAuthenticated={isAuthenticated}
-              user={user}
-            ></CheckAuth>
-          }
+          // element={
+            // <CheckAuth
+            //   isAuthenticated={isAuthenticated}
+            //   user={user}
+            // ></CheckAuth>
+          // }
         />
         <Route
           path="/auth"
@@ -75,12 +75,15 @@ function App() {
         </Route>
         <Route
           path="/shop"
-          element={
-            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
-              <ShoppingLayout />
-            </CheckAuth>
-          }
+          // element={
+          //   <CheckAuth 
+          //   // isAuthenticated={isAuthenticated}
+          //    user={user}>
+          //   </CheckAuth>
+          // }
+          element={<ShoppingLayout />}
         >
+
           <Route path="home" element={<ShoppingHome />} />
           <Route path="listing" element={<ShoppingListing />} />
           <Route path="checkout" element={<ShoppingCheckout />} />
