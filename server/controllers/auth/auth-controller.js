@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../../models/User");
+const Admin = require("../../models/Admin");
 
 //register
 const registerUser = async (req, res) => {
@@ -87,6 +88,57 @@ const loginUser = async (req, res) => {
   }
 };
 
+const loginAdminUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const checkUser = await Admin.findOne({ email });
+    if (!checkUser)
+      return res.json({
+        success: false,
+        message: "Admin doesn't exists! Please register first",
+      });
+
+    const checkPasswordMatch = await bcrypt.compare(
+      password,
+      checkUser.password
+    );
+    if (!checkPasswordMatch)
+      return res.json({
+        success: false,
+        message: "Incorrect password! Please try again",
+      });
+
+    const token = jwt.sign(
+      {
+        id: checkUser._id,
+        role: checkUser.role,
+        email: checkUser.email,
+        userName: checkUser.userName,
+      },
+      "CLIENT_SECRET_KEY",
+      { expiresIn: "60m" }
+    );
+
+    res.cookie("token", token, { httpOnly: true, secure: false }).json({
+      success: true,
+      message: "Logged in successfully",
+      user: {
+        email: checkUser.email,
+        role: checkUser.role,
+        id: checkUser._id,
+        userName: checkUser.userName,
+      },
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      success: false,
+      message: "Some error occured",
+    });
+  }
+};
+
 //logout
 
 const logoutUser = (req, res) => {
@@ -117,4 +169,4 @@ const authMiddleware = async (req, res, next) => {
   }
 };
 
-module.exports = { registerUser, loginUser, logoutUser, authMiddleware };
+module.exports = { registerUser, loginUser, logoutUser, authMiddleware,loginAdminUser };

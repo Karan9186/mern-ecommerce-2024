@@ -38,6 +38,21 @@ export const loginUser = createAsyncThunk(
     return response.data;
   }
 );
+export const loginUserAdmin = createAsyncThunk(
+  "/auth/login",
+
+  async (formData) => {
+    const response = await axios.post(
+      "http://localhost:5000/api/auth/adminlogin",
+      formData,
+      {
+        withCredentials: true,
+      }
+    );
+
+    return response.data;
+  }
+);
 
 export const logoutUser = createAsyncThunk(
   "/auth/logout",
