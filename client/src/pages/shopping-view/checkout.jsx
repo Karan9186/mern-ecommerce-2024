@@ -5,8 +5,9 @@ import UserCartItemsContent from "@/components/shopping-view/cart-items-content"
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { createNewOrder } from "@/store/shop/order-slice";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
+import { deleteCartItem } from "@/store/shop/cart-slice";
 
 function ShoppingCheckout() {
   const { cartItems } = useSelector((state) => state.shopCart);
@@ -16,6 +17,7 @@ function ShoppingCheckout() {
   const [isPaymentStart, setIsPaymemntStart] = useState(false);
   const dispatch = useDispatch();
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   console.log(currentSelectedAddress, "cartItems");
 
@@ -82,8 +84,22 @@ function ShoppingCheckout() {
     };
 
     dispatch(createNewOrder(orderData)).then((data) => {
+      console.log("data", data);
       if (data?.payload?.success) {
         setIsPaymemntStart(true);
+        navigate("/shop/paypal-return");
+        dispatch(
+          deleteCartItem({
+            userId: user?.id,
+            productId: orderData?.cartItems?.productId,
+          })
+        ).then((data) => {
+          if (data?.payload?.success) {
+            toast({
+              title: "Cart item is deleted successfully",
+            });
+          }
+        });
       } else {
         setIsPaymemntStart(false);
       }

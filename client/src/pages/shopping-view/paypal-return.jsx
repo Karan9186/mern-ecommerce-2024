@@ -12,16 +12,21 @@ function PaypalReturnPage() {
   const payerId = params.get("PayerID");
 
   useEffect(() => {
-    if (paymentId && payerId) {
-      const orderId = JSON.parse(sessionStorage.getItem("currentOrderId"));
+    // if (paymentId && payerId) {
+    //   const orderId = JSON.parse(sessionStorage.getItem("currentOrderId"));
+    //   console.log("orderId",orderId)
+      // dispatch(capturePayment({ paymentId, payerId, orderId })).then((data) => {
+    //     if (data?.payload?.success) {
+    //       sessionStorage.removeItem("currentOrderId");
+    //       window.location.href = "/shop/payment-success";
+    //     }
+    //   });
+    // }
+    setInterval(() => {
+      sessionStorage.removeItem("currentOrderId");
 
-      dispatch(capturePayment({ paymentId, payerId, orderId })).then((data) => {
-        if (data?.payload?.success) {
-          sessionStorage.removeItem("currentOrderId");
-          window.location.href = "/shop/payment-success";
-        }
-      });
-    }
+      window.location.href = "/shop/payment-success";
+    }, 3000);
   }, [paymentId, payerId, dispatch]);
 
   return (

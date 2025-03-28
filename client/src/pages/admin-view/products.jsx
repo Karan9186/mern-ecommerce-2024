@@ -54,8 +54,9 @@ function AdminProducts() {
             formData,
           })
         ).then((data) => {
+          console.log("edit-----------");
           console.log(data, "edit");
-
+          
           if (data?.payload?.success) {
             dispatch(fetchAllProducts());
             setFormData(initialFormData);
@@ -100,7 +101,9 @@ function AdminProducts() {
     dispatch(fetchAllProducts());
   }, [dispatch]);
 
-  console.log(formData, "productList");
+  console.log(formData, "productList-----");
+  console.log(currentEditedId, "currentEditedId id -----");
+  console.log(currentEditedId !== null, "productList cond  ");
 
   return (
     <Fragment>
@@ -117,6 +120,7 @@ function AdminProducts() {
                 setOpenCreateProductsDialog={setOpenCreateProductsDialog}
                 setCurrentEditedId={setCurrentEditedId}
                 product={productItem}
+                setImageFile={setImageFile}
                 handleDelete={handleDelete}
               />
             ))

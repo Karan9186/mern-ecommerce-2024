@@ -19,7 +19,7 @@ function ProductImageUpload({
   const inputRef = useRef(null);
 
   console.log(isEditMode, "isEditMode");
-
+console.log(uploadedImageUrl,"igm")
   function handleImageFileChange(event) {
     console.log(event.target.files, "event.target.files");
     const selectedFile = event.target.files?.[0];
@@ -46,7 +46,7 @@ function ProductImageUpload({
   }
 
   async function uploadImageToCloudinary() {
-    setImageLoadingState(true);
+    setImageLoadingState(false);
     const data = new FormData();
     data.append("my_file", imageFile);
     const response = await axios.post(
@@ -62,8 +62,9 @@ function ProductImageUpload({
   }
 
   useEffect(() => {
-    if (imageFile !== null) uploadImageToCloudinary();
+    if (imageFile != null) uploadImageToCloudinary();
   }, [imageFile]);
+  console.log(isEditMode, "isEditMode");
 
   return (
     <div

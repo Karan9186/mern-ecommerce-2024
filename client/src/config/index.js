@@ -60,7 +60,7 @@ export const addProductFormElements = [
     options: [
       { id: "men", label: "Men" },
       { id: "women", label: "Women" },
-      { id: "kids", label: "Kids" },
+      // { id: "kids", label: "Kids" },
       // { id: "accessories", label: "Accessories" },
       // { id: "footwear", label: "Footwear" },
     ],
@@ -70,12 +70,12 @@ export const addProductFormElements = [
     name: "brand",
     componentType: "select",
     options: [
-      { id: "rolex", label: "Rolex" },
-      { id: "patekPhilippe", label: "Patek Philippe" },
-      { id: "audemarsPiguet", label: "Audemars Piguet" },
-      { id: "vacheronConstantin", label: "Vacheron Constantin" },
-      { id: "jaegerLeCoultre", label: "Jaeger-LeCoultre" },
-      { id: "omega", label: "Omega" },
+      { id: "chanel", label: "Chanel" },
+      { id: "dior", label: "Dior" },
+      { id: "gucci", label: "Gucci" },
+      { id: "tomFord", label: "Tom Ford" },
+      { id: "versace", label: "Versace" },
+      { id: "ysl", label: "Yves Saint Laurent" },
     ],
   },
   {
@@ -122,11 +122,11 @@ export const shoppingViewHeaderMenuItems = [
     label: "Women",
     path: "/shop/listing",
   },
-  {
-    id: "kids",
-    label: "Kids",
-    path: "/shop/listing",
-  },
+  // {
+  //   id: "kids",
+  //   label: "Kids",
+  //   path: "/shop/listing",
+  // },
   // {
   //   id: "footwear",
   //   label: "Footwear",
@@ -147,9 +147,9 @@ export const shoppingViewHeaderMenuItems = [
 export const categoryOptionsMap = {
   men: "Men",
   women: "Women",
-  kids: "Kids",
-  accessories: "Accessories",
-  footwear: "Footwear",
+  // kids: "Kids",
+  // accessories: "Accessories",
+  // footwear: "Footwear",
 };
 
 export const brandOptionsMap = {
@@ -165,17 +165,17 @@ export const filterOptions = {
   category: [
     { id: "men", label: "Men" },
     { id: "women", label: "Women" },
-    { id: "kids", label: "Kids" },
+    // { id: "kids", label: "Kids" },
     // { id: "accessories", label: "Accessories" },
     // { id: "footwear", label: "Footwear" },
   ],
   brand: [
-    { id: "rolex", label: "Rolex" },
-    { id: "patekPhilippe", label: "Patek Philippe" },
-    { id: "audemarsPiguet", label: "Audemars Piguet" },
-    { id: "vacheronConstantin", label: "Vacheron Constantin" },
-    { id: "jaegerLeCoultre", label: "Jaeger-LeCoultre" },
-    { id: "omega", label: "Omega" },
+    { id: "chanel", label: "Chanel" },
+    { id: "dior", label: "Dior" },
+    { id: "gucci", label: "Gucci" },
+    { id: "tomFord", label: "Tom Ford" },
+    { id: "versace", label: "Versace" },
+    { id: "ysl", label: "Yves Saint Laurent" },
   ],
 };
 

@@ -49,6 +49,30 @@ const createOrder = async (req, res) => {
       ],
     };
 
+    // dummy
+    const newlyCreatedOrder = new Order({
+      userId,
+      cartId,
+      cartItems,
+      addressInfo,
+      orderStatus,
+      paymentMethod,
+      paymentStatus,
+      totalAmount,
+      orderDate,
+      orderUpdateDate,
+      paymentId,
+      payerId,
+    });
+    await newlyCreatedOrder.save();
+    res.status(201).json({
+      success: true,
+      // approvalURL,
+      orderId: newlyCreatedOrder._id,
+    });
+
+    // end
+
     // paypal.payment.create(create_payment_json, async (error, paymentInfo) => {
     //   if (error) {
     //     console.log(error);
@@ -86,11 +110,11 @@ const createOrder = async (req, res) => {
     //     });
     //   }
     // });
-    console.log("called payment")
-    res.status(200).json({
-      success: true,
-      message: "payment called",
-    })
+    // console.log("called payment");
+    // res.status(200).json({
+    //   success: true,
+    //   message: "payment called",
+    // });
   } catch (e) {
     console.log(e);
     res.status(500).json({

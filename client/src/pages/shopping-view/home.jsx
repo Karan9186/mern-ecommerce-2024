@@ -8,13 +8,17 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   CloudLightning,
+  FlaskRound,
+  HeartHandshake,
   Heater,
   Images,
+  PersonStanding,
   Shirt,
   ShirtIcon,
   ShoppingBasket,
   UmbrellaIcon,
   WashingMachine,
+  Watch,
   WatchIcon,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -32,27 +36,18 @@ import ProductDetailsDialog from "@/components/shopping-view/product-details";
 import { getFeatureImages } from "@/store/common-slice";
 
 const categoriesWithIcon = [
-  { id: "men", label: "Men", icon: ShirtIcon },
-  { id: "women", label: "Women", icon: CloudLightning },
-  { id: "kids", label: "Kids", icon: BabyIcon },
-  // { id: "accessories", label: "Accessories", icon: WatchIcon },
-  // { id: "footwear", label: "Footwear", icon: UmbrellaIcon },
+  { id: "men", label: "Men", icon: PersonStanding },
+  { id: "women", label: "Women", icon: HeartHandshake },
 ];
 
 const brandsWithIcon = [
-  // { id: "nike", label: "Nike", icon: Shirt },
-  // { id: "adidas", label: "Adidas", icon: WashingMachine },
-  // { id: "puma", label: "Puma", icon: ShoppingBasket },
-  // { id: "levi", label: "Levi's", icon: Airplay },
-  // { id: "zara", label: "Zara", icon: Images },
-  // { id: "h&m", label: "H&M", icon: Heater },
 
-  { id: "rolex", label: "Rolex", icon: Shirt  },
-  { id: "patekPhilippe", label: "Patek Philippe", icon: Shirt  },
-  { id: "audemarsPiguet", label: "Audemars Piguet", icon: Shirt  },
-  { id: "vacheronConstantin", label: "Vacheron Constantin", icon: Shirt  },
-  { id: "jaegerLeCoultre", label: "Jaeger-LeCoultre", icon: Shirt  },
-  { id: "omega", label: "Omega", icon: Shirt  },
+  { id: "chanel", label: "Chanel", icon: FlaskRound },
+  { id: "dior", label: "Dior", icon: FlaskRound },
+  { id: "gucci", label: "Gucci", icon: FlaskRound },
+  { id: "tomFord", label: "Tom Ford", icon: FlaskRound },
+  { id: "versace", label: "Versace", icon: FlaskRound },
+  { id: "ysl", label: "Yves Saint Laurent", icon: FlaskRound },
 ];
 function ShoppingHome() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -201,8 +196,8 @@ function ShoppingHome() {
                 className="cursor-pointer hover:shadow-lg transition-shadow"
               >
                 <CardContent className="flex flex-col items-center justify-center p-6">
-                  <brandItem.icon className="w-12 h-12 mb-4 text-primary" />
-                  <span className="font-bold">{brandItem.label}</span>
+                  <brandItem.icon className="w-12 h-12 mb-4 text-primary " />
+                  <span className="font-bold text-center">{brandItem.label}</span>
                 </CardContent>
               </Card>
             ))}
