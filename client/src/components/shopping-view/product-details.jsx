@@ -80,16 +80,26 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
         reviewMessage: reviewMsg,
         reviewValue: rating,
       })
-    ).then((data) => {
-      if (data.payload.success) {
-        setRating(0);
-        setReviewMsg("");
-        dispatch(getReviews(productDetails?._id));
+    )
+      .then((data) => {
+        console.log("the data++", data);
+
+        if (data.payload.success) {
+          setRating(0);
+          setReviewMsg("");
+          dispatch(getReviews(productDetails?._id));
+          toast({
+            title: "Review added successfully!",
+          });
+        }
+      })
+      .catch((err) => {
+        console.log("the dee..", err);
         toast({
-          title: "Review added successfully!",
+          title: "You need to purchase product to review it!",
+          variant: "destructive",
         });
-      }
-    });
+      });
   }
 
   useEffect(() => {
@@ -106,7 +116,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
 
   return (
     <Dialog open={open} onOpenChange={handleDialogClose}>
-      <DialogContent className="grid grid-cols-2 gap-8 sm:p-12 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[70vw]">
+      <DialogContent className="grid grid-cols-2 gap-8 sm:p-12 max-h-[90vh] max-w-[90vw] max-w-[90vw] sm:max-w-[80vw] lg:max-w-[70vw] overflow-scroll">
         <div className="relative overflow-hidden rounded-lg">
           <img
             src={productDetails?.image}

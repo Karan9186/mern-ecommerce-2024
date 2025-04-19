@@ -17,9 +17,9 @@ function ProductImageUpload({
   isCustomStyling = false,
 }) {
   const inputRef = useRef(null);
-
+  console.log("the image file>>", imageFile);
   console.log(isEditMode, "isEditMode");
-console.log(uploadedImageUrl,"igm")
+  console.log(uploadedImageUrl, "igm");
   function handleImageFileChange(event) {
     console.log(event.target.files, "event.target.files");
     const selectedFile = event.target.files?.[0];
@@ -28,6 +28,7 @@ console.log(uploadedImageUrl,"igm")
     if (selectedFile) setImageFile(selectedFile);
   }
 
+  console.log(uploadedImageUrl, "==", imageFile, "=imga row");
   function handleDragOver(event) {
     event.preventDefault();
   }
@@ -84,7 +85,7 @@ console.log(uploadedImageUrl,"igm")
           className="hidden"
           ref={inputRef}
           onChange={handleImageFileChange}
-          disabled={isEditMode}
+          // disabled={isEditMode}
         />
         {!imageFile ? (
           <Label

@@ -43,7 +43,8 @@ function AdminProducts() {
   const { productList } = useSelector((state) => state.adminProducts);
   const dispatch = useDispatch();
   const { toast } = useToast();
-
+  console.log("inside work>>", uploadedImageUrl);
+  console.log("inside formdata>>", formData);
   function onSubmit(event) {
     event.preventDefault();
 
@@ -52,11 +53,12 @@ function AdminProducts() {
           editProduct({
             id: currentEditedId,
             formData,
+            imageUpd: uploadedImageUrl ? uploadedImageUrl : formData.image,
           })
         ).then((data) => {
           console.log("edit-----------");
           console.log(data, "edit");
-          
+
           if (data?.payload?.success) {
             dispatch(fetchAllProducts());
             setFormData(initialFormData);

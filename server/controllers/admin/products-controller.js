@@ -5,7 +5,7 @@ const handleImageUpload = async (req, res) => {
   try {
     const b64 = Buffer.from(req.file.buffer).toString("base64");
     const url = "data:" + req.file.mimetype + ";base64," + b64;
-    
+
     const result = await imageUploadUtil(url);
 
     res.json({
@@ -87,7 +87,7 @@ const editProduct = async (req, res) => {
   try {
     const { id } = req.params;
     const {
-      image,
+      imageUpd,
       title,
       description,
       category,
@@ -97,7 +97,7 @@ const editProduct = async (req, res) => {
       totalStock,
       averageReview,
     } = req.body;
-
+    console.log("work::::", req.body);
     let findProduct = await Product.findById(id);
     if (!findProduct)
       return res.status(404).json({
@@ -113,7 +113,7 @@ const editProduct = async (req, res) => {
     findProduct.salePrice =
       salePrice === "" ? 0 : salePrice || findProduct.salePrice;
     findProduct.totalStock = totalStock || findProduct.totalStock;
-    findProduct.image = image || findProduct.image;
+    findProduct.image = imageUpd || findProduct.imageUpd;
     findProduct.averageReview = averageReview || findProduct.averageReview;
 
     await findProduct.save();
