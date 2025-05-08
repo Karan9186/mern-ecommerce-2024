@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardFooter } from "../ui/card";
 
@@ -8,6 +9,7 @@ function AdminProductTile({
   setCurrentEditedId,
   handleDelete,
 }) {
+  const navigate = useNavigate();
   return (
     <Card className="w-full max-w-sm mx-auto">
       <div>
@@ -19,7 +21,15 @@ function AdminProductTile({
           />
         </div>
         <CardContent>
-          <h2 className="text-xl font-bold mb-2 mt-2">{product?.title}</h2>
+          <h2
+            className="text-xl font-bold mb-2 mt-2 hover:text-blue-900"
+            onClick={() => {
+              console.log(product?._id);
+              navigate(`/admin/review/${product?._id}`);
+            }}
+          >
+            {product?.title}
+          </h2>
           <div className="flex justify-between items-center mb-2">
             <span
               className={`${

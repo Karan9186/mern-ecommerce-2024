@@ -1,4 +1,5 @@
 const { imageUploadUtil } = require("../../helpers/cloudinary");
+const ProductReview = require("../../models/Review")
 const Product = require("../../models/Product");
 
 const handleImageUpload = async (req, res) => {
@@ -155,10 +156,32 @@ const deleteProduct = async (req, res) => {
   }
 };
 
+
+const getProductReview = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const reviews = await ProductReview.find({ productId : id }).sort({ createdAt: -1 });
+    res.status(200).json({
+      success: true,
+      data: reviews,
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      success: false,
+      message: "Error occured",
+    });
+  }
+};
+
+
 module.exports = {
   handleImageUpload,
   addProduct,
   fetchAllProducts,
   editProduct,
   deleteProduct,
+  getProductReview
 };
+
+

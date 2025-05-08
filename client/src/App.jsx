@@ -23,6 +23,7 @@ import PaypalReturnPage from "./pages/shopping-view/paypal-return";
 import PaymentSuccessPage from "./pages/shopping-view/payment-success";
 import SearchProducts from "./pages/shopping-view/search";
 import AuthAdminLogin from "./pages/auth/adminLogin";
+import Review from "./pages/admin-view/review";
 
 function App() {
   const { user, isAuthenticated, isLoading } = useSelector(
@@ -44,13 +45,13 @@ function App() {
         <Route
           path="/"
           // element={
-            // <CheckAuth
-            //   isAuthenticated={isAuthenticated}
-            //   user={user}
-            // ></CheckAuth>
+          // <CheckAuth
+          //   isAuthenticated={isAuthenticated}
+          //   user={user}
+          // ></CheckAuth>
           // }
         />
-          <Route path="admin-user" element={<AuthAdminLogin />} />
+        <Route path="admin-user" element={<AuthAdminLogin />} />
         <Route
           path="/auth"
           element={
@@ -74,18 +75,18 @@ function App() {
           <Route path="products" element={<AdminProducts />} />
           <Route path="orders" element={<AdminOrders />} />
           <Route path="features" element={<AdminFeatures />} />
+          <Route path="review/:id" element={<Review />} />
         </Route>
         <Route
           path="/shop"
           // element={
-          //   <CheckAuth 
+          //   <CheckAuth
           //   // isAuthenticated={isAuthenticated}
           //    user={user}>
           //   </CheckAuth>
           // }
           element={<ShoppingLayout />}
         >
-
           <Route path="home" element={<ShoppingHome />} />
           <Route path="listing" element={<ShoppingListing />} />
           <Route path="checkout" element={<ShoppingCheckout />} />
